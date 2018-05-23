@@ -6,7 +6,7 @@
 
 ## REPOSITORIES
 
-> []()  
+> [GitHub public repository](https://github.com/mjtalbatana/project-20180520)  
 
 ## VERSION HISTORY
 
