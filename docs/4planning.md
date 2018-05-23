@@ -113,6 +113,7 @@ Here's the list of the tables for the migration:
   name
   brand
   model
+  price
   barcode
   description
   qty
