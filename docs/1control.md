@@ -31,7 +31,12 @@
 ## CHANGE LOG
 
 > ## v0.0.0.0
-> >  
+> v0.0.0.0a     2018/05/24  
+modified php-version to comply with Heroku docs
+> v0.0.0.0b     2018/05/24
+modified php-version to comply with Heroku docs
+
+
 
 ## TIMELINE
 
