@@ -46,3 +46,6 @@
 | 15. Pages and Layouts                                              | 2018/05/24 |
 | 16. Planning                                                       | 2018/05/24 |
 
+### TASK ASSIGNMENT AND DISTRIBUTION
+
+All tasks are assigned to: Michael James Turiano Albatana  

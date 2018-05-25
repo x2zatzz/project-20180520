@@ -48,11 +48,7 @@ Will not focus on the frontend aspect, hence design would be minimal and simple
 
 As a default, Bootstrap Framework offers responsive layouts
 
-#### SKETCHES
-
-(TBA)
-
-#### WIREFRAMES
+#### WEB PAGES AND PARTIALS
 
 1. Index+Sign-In Page
 displays realtime statistics of the inventory
@@ -67,6 +63,18 @@ displays inventory for adding
 
 4. Inventory Page
 displays table of existing inventory
+
+5. Header Panel (partials)
+displays: logo, company name, right:signin/logout
+
+
+#### SKETCHES
+
+(TBA)
+
+#### WIREFRAMES
+
+(TBA)
 
 #### COLOR SCHEMES
 
@@ -111,22 +119,31 @@ Here's the list of the tables for the migration:
   id*
   code
   name
+  description
   brand
   model
-  price
   barcode
-  description
-  qty
+  retailprice
+  qtyCurrent
 
 3. ItemIncomings
   id*
-  ref_Items
+  date
+  ref_Item
+  ref_User
+  qtyIn
+  retailprice
   invoice
 
 4. ItemOutgoings
   id*
+  date
   ref_Items
+  ref_Item
+  qtyOut
   invoice
+  sellingprice
+  customername
 
 #### DATABASE ERD
 

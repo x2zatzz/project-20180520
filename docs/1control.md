@@ -30,12 +30,20 @@
 
 ## CHANGE LOG
 
-> ## v0.0.0.0
+> v0.0.0.0
+published repository to GitLab (for privacy concerns)
+cloned repository to local for application development
+
 > v0.0.0.0a     2018/05/24  
 modified php-version to comply with Heroku docs
+
 > v0.0.0.0b     2018/05/24
 modified php-version to comply with Heroku docs
 
+> v0.0.0.0c     2018/05/24
+successful deployment to Heroku
+successful usage of symbolic-links for 'public' folder to 'web' folder to comply to Heroku's file directory
+scaffolding of Laravel's built-in Auth object
 
 
 ## TIMELINE

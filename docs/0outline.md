@@ -31,11 +31,12 @@
   4.x.2 Front-end  
   4.x.2.1 Front-end architecture  
   4.x.2.2 Web responsiveness and multi-platform rendering  
-  4.x.2.3 Sketches/drafts  
-  4.x.2.4 2D graphic wireframes  
-  4.x.2.5 Color schemes  
-  4.x.2.6 Interactive elements  
-  4.x.2.7 Animation frames  
+  4.x.2.3 Web pages/partials  
+  4.x.2.4 Sketches/drafts  
+  4.x.2.5 2D graphic wireframes  
+  4.x.2.6 Color schemes  
+  4.x.2.7 Interactive elements  
+  4.x.2.8 Animation frames  
 
   4.x.3 Back-end  
   4.x.3.1 Back-end architecture  
