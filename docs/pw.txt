@@ -1,0 +1,6 @@
+000webhost:
+website-name: project-mjta-20180520
+password: 20180520
+dbname: id5914347_inventory
+dbuser: id5914347_dev
+dbpassword: 20180520
