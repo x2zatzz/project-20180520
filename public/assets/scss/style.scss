@@ -1,0 +1,352 @@
+/*
+REFERENCE: REF-DOC05
+TEMPLATE CODE: TEMPLATE-SCSS
+VERSION: v0.0.0.0
+0. GUIDELINES-----------------------------------------------------
+ this guideline are defined and specified in the documentation: REF-D05
+ for more information & updates please visit the documentation at GitHub repository
+ https://github.com/mjtalbatana/ref-template
+ 0.1 avoid applying CSS-rules for static styling:
+   - any transform rules, functions, or methods
+     - workaround: transformations are processed by JavaScript
+   - position, top, bottom, left, right rules
+ 0.2 minimize nesting, id-tags should be placed at first nest unless contained by an important parent container
+ 0.3 prioritize general scopes
+ 0.4 rules with different responsive rules must be contained in one css-rule nest
+ 0.5 rules with on different pages/frames should be contained within a parent container for easy code readability
+
+*/
+/*
+==== THIS CODE BLOCK IS SCRIPTED, PLEASE MODIFY ACCORDING TO SPECIFICATIONS
+OUTLINE:
+  1 Initial Configurations
+    1.1 Variables and assignment
+    1.2 Font import
+    1.3 SASS presets and mixins
+    1.4 Universal defaults
+    1.5 Mass assignments
+
+  2 Display Configurations
+    2.1 Display assignment
+    2.2 Inside
+      2.1.1 Grid
+      2.1.2 Flex
+      2.1.3 Table
+    2.3 Outside
+      2.3.1 Block
+      2.3.1 Inline
+
+  3 Layering and Overflow
+    3.1 Layer
+    3.2 Overflow
+ CHECKSUM: --------------------------------------------------------
+*/
+
+/*
+suggested shorthand CSS rules (in order):
+
+background
+  background-clip
+  background-color
+  background-image
+  background-origin
+  background-position
+  background-repeat
+  background-size
+  background-attachment
+
+font
+  font-style
+  font-weight
+  font-size
+  line-height
+  font-family
+
+grid
+  **TBA**
+
+text-decoration
+  text-decoration-line
+  text-decoration-color
+  text-decoration-style
+
+*/
+
+
+//===================================================================
+// 1. VARIABLES & ASSIGNMENT-----------------------------------------
+
+$color-black: white;
+
+$bgcolor-white: black;
+
+$font-helvetica: 'Helvetica';
+
+//===================================================================
+//  1.1 FONT IMPORT--------------------------------------------------
+
+@font-face{
+
+}
+
+//===================================================================
+//  1.2 PRESETS------------------------------------------------------
+
+@mixin landscape(){
+  @media only screen and (orientation: landscape){
+    @content;
+  }
+}
+
+@mixin portrait(){
+  @media only screen and (orientation: portrait){
+    @content;
+  }
+}
+
+@mixin gridarea($w, $x, $y, $z){
+  grid-area: $w #{'/'} $y #{'/'} $x #{'/'} $z;
+}
+
+@mixin flex(
+    $v:row nowrap,
+    $w:center,
+    $x:center,
+    $y:space-between,
+    $z:center
+  ){
+    flex-flow: $v;          //  row/column/row-reverse/columen-reverse  wrap/nowrap/wrap-reverse
+    justify-content: $w;    //  start  center  space-between  space-around  space-evenly
+    justify-items: $x;      //  stretch  center  start  end
+    align-content: $y;      //  start  center  space-between  space-around  space-evenly
+    align-items: $z;        //  stretch  center  start  end
+}
+
+@mixin dimensions(
+    $v:100%,
+    $w:auto,
+    $x:0,
+    $y:0,
+    $z:0 auto
+  ){
+    width: $v;
+    height: $w;
+    padding: $x;
+    border-width: $y;
+    margin: $z;
+}
+
+@mixin backgroundimage(
+    $t:cover,
+    $u:padding-box,
+    $v:padding-box,
+    $w:inherit,
+    $x:ro-repeat,
+    $y:center,
+    $z:transparent
+  ){
+    background-size: $t;            //  contain  cover  [%]  [absolute]
+    background-clip: $u;            //  border-box  padding-box  content-box  text
+    background-origin: $v;          //  border-box  padding-box  content-box
+    background-attachment: $w;      //  scroll  fixed  local  local,scroll  scroll,local
+    background-repeat: $x;          //  repeat  repeat-x  repeat-y  space  round  no-repeat
+    background-position: $y;        //  top  left  center  [absolute-X/Y]  [relative-X/Y]
+    background-color: $z;           //
+}
+
+@mixin overflow(
+    $y:hidden,
+    $z:hidden
+  ){
+    overflow-x: $y;   //  visible  hidden  scroll  auto
+    overflow-y: $z;   //  visible  hidden  scroll  auto
+}
+
+@mixin textcontainer(
+    $r:justify,
+    $s:normal,
+    $t:inherit,
+    $u:normal,
+    $v:normal,
+    $w:normal,
+    $x:auto,
+    $y:break-all,
+    $z:break-word
+  ){
+    text-align: $r;       //  left  right  center  justify  justify-all  start  end  match-parent
+    line-height: $s;      //  normal  [decimal]  [%]  [units]
+    text-indent: $t;      //  [%] [units]  each-line  hanging
+    letter-spacing: $u;   //  normal [units]
+    word-spacing: $v;     //  normal  [%]  [units]  [-units]
+    white-space: $w;      //  normal  nowrap  pre  pre-wrap  pre-line
+    hyphens: $x;           //  none  manual  auto
+    word-break: $y;       //  normal  break-all  keep-all  break-word
+    overflow-wrap: $z;     // normal break-word
+}
+
+@mixin textspan(
+    $z:none
+  ){
+    text-transform: $z;     //  capitalize  uppercase  lowercase  none  full-width
+}
+
+@mixin position(
+    $u:0,
+    $v:static,
+    $w:auto,
+    $x:auto,
+    $y:auto,
+    $z:auto
+  ){
+    z-index: $u;    //  0  [integer]  auto
+    position: $v;   //  static  relative  absolute  sticky  fixed
+    top: $w;        //  auto  0  [unit]  [-unit]
+    right: $x;      //  auto  0  [unit]  [-unit]
+    bottom: $y;     //  auto  0  [unit]  [-unit]
+    left: $z;       //  auto  0  [unit]  [-unit]
+}
+
+@mixin floatclear(
+    $y:none,
+    $z:none
+  ){
+    float: $y;  //  none  left  right  inline-start  inline-end
+    clear: $z;  //  none  left  right  both  inline-start  inline-end
+}
+//===================================================================
+//  1.3 UNIVERSAL DEFAULTS-------------------------------------------
+/*
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  width: 100%;        // ensures all elements will occupy 100% width
+  height: auto;
+  font-family: $font-helvetica;
+  color: $color-black;
+  text-align: center;
+  user-select: none;  // prevents highlighting of elements
+
+  li{
+    list-style: none;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  &::-webkit-scrollbar{
+    display: none;
+  }
+
+  body{
+    background-color: $bgcolor-white;
+  }
+}
+*/
+//===================================================================
+//===================================================================
+//  1.4 MASS ASSIGNMENTS---------------------------------------------
+%display-table{
+  display: table;
+}
+
+%display-grid{
+  display: grid;
+}
+
+%display-flex{
+  display: flex;
+}
+
+//===================================================================
+//===================================================================
+// 2. VIEWPORT SENSITIVE RULES---------------------------------------
+//  **RESTRICTIONS: dimensional units: vh, vw
+//  2.1 GRID----------------------------------------------------------
+//
+
+//  2.2 FLEX---------------------------------------------------------
+
+
+//  2.3 TABLE--------------------------------------------------------
+
+
+//  2.4 CSS-BOX-MODEL------------------------------------------------
+//    **MARGIN, BORDER, PADDING, SIZE--------------------------------
+
+//===================================================================
+//===================================================================
+// 3. LAYERING & OVERFLOW--------------------------------------------
+//  3.1 LAYERS-------------------------------------------------------
+%layer1{
+  z-index: 1;
+}
+%layer1_{
+  z-index: -1;
+}
+
+//  3.2 OVERFLOW-----------------------------------------------------
+
+%overflowhidden{
+  overflow: hidden;
+}
+%overflowscroll{
+  overflow: scroll;
+}
+%overflowvisible{
+  overflow: visible;
+}
+
+
+
+//===================================================================
+// 4. NON-CONTAINING ELEMENTS----------------------------------------
+//  4.1 FONT-SIZE----------------------------------------------------
+//  **RESTRICTIONS: dimensional units: vh, vw
+
+//  4.2 FONT ASSIGNMENT FOR NON-DEFAULTS-----------------------------
+.emoji{
+  font-family: 'Noto Emoji';
+}
+
+//  4.3 FONT-EFFECTS-------------------------------------------------
+
+//  4.4 HEADERS------------------------------------------------------
+
+//  4.5 SUBHEADERS---------------------------------------------------
+
+//  4.6 TEXT-BLOCK---------------------------------------------------
+
+//  4.7 TEXT-INLINE--------------------------------------------------
+
+//  4.8 IMAGES-------------------------------------------------------
+
+//  4.8 OTHER MEDIA--------------------------------------------------
+
+//  4.9 BACKGROUND PROPERTIES----------------------------------------
+
+
+
+//===================================================================
+// 5. CSS ANIMATION -------------------------------------------------
+
+//===================================================================
+// 6. SPECIAL RULES--------------------------------------------------
+
+#snackbar{
+  padding: 0.5em;
+  margin: 0;
+  width: 100%;
+}
+.snackbar-greet{
+  background-color: blue;
+}
+.snackbar-success{
+  background-color: green;
+}
+.snackbar-fail{
+  background-color: red;
+}
+
+//===================================================================

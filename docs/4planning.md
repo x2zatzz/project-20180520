@@ -55,7 +55,8 @@ displays realtime statistics of the inventory
 displays sign-in form
 
 2. Staff Page
-displays inventory for checking out
+displays today's transactions
+LINKS inventory for checking out
 
 3. Manager Page
 displays adding users
@@ -63,6 +64,8 @@ displays inventory for adding
 
 4. Inventory Page
 displays table of existing inventory
+Staff can check-out items
+Manager can check-in items
 
 5. Header Panel (partials)
 displays: logo, company name, right:signin/logout
@@ -115,35 +118,33 @@ Here's the list of the tables for the migration:
   lastname
   role
 
-2. Items
+2. ItemIncomings
   id*
-  code
+  recievedate
   name
-  description
   brand
   model
+  description
+  unit
+  quantity
+  retailprice
+  localcode
   barcode
-  retailprice
-  qtyCurrent
+  purchaseinvoice
+  username
 
-3. ItemIncomings
+3. ItemOutgoings
   id*
-  date
-  ref_Item
-  ref_User
-  qtyIn
-  retailprice
-  invoice
-
-4. ItemOutgoings
-  id*
-  date
-  ref_Items
-  ref_Item
+  ref_ItemsIncomings(id)
+  checkoutdate
   qtyOut
   invoice
   sellingprice
   customername
+
+4. Items (pivottable)
+  ref_ItemIncomings(name)
+
 
 #### DATABASE ERD
 
