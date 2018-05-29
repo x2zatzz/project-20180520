@@ -1,26 +1,18 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Itemicoming;
 
 $factory->define(App\Itemoutgoing::class, function (Faker $faker) {
-  $id = App\Itemincoming::select('id')->get()->random()['id'];
-  $unit = App\Itemincoming::find($id)->unit;
-  $quantity = App\Itemincoming::find($id)->quantity;
-  $soldprice = App\Itemincoming::find($id)->retailprice;
-  $localcode = App\Itemincoming::find($id)->localcode;
-  $barcode = App\Itemincoming::find($id)->barcode;
-  $salesinvoice = App\Itemincoming::find($id)->salesinvoice;
+  $id = App\Item::select('id')->get()->random()['id'];
+  $quantity = rand(1, App\Itemincoming::where('item_id', $id)->sum('quantity')-App\Itemoutgoing::where('item_id', $id)->sum('quantity'));
+  $soldprice = App\Item::find($id)->retailprice;
 
   return [
-    'itemincoming_id' => $id,
+    'item_id' => $id,
+    'user_id' => 4,
     'checkoutdate' => today(),
-    'unit' => $unit,
     'quantity' => $quantity,
     'soldprice' => $soldprice,
-    'localcode' => $localcode,
-    'barcode' => $barcode,
-    'salesinvoice' => $salesinvoice,
-    'user_id' => 4,
+    'salesinvoice' => $faker->ean13,
   ];
 });

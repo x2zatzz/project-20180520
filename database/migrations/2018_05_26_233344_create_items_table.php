@@ -15,26 +15,29 @@ class CreateItemsTable extends Migration
   {
     Schema::create('items', function (Blueprint $table) {
       $table->increments('id');
-      $table->unsignedInteger('itemincoming_id');
-      // name
-      // brand
-      // model
-      // qty
-      $table->unsignedInteger('itemoutgoing_id');
-      // qty
+
+      $table->string('name')->unique();
+      $table->string('brand');
+      $table->string('model');
+      $table->longText('description')->nullable();
+
+      $table->decimal('retailprice', 8, 2);
+
+      $table->string('localcode')->nullable();
+      $table->string('barcode')->nullable();
+      $table->string('image')->nullable();
+      $table->unsignedInteger('user_id');
+
 
       $table->timestamps();
       $table->softDeletes();
 
-      $table->foreign('itemincoming_id')
-            ->references('id')->on('itemincomings')
-            ->onDelete('cascade');
-      $table->foreign('itemoutgoing_id')
-            ->references('id')->on('itemoutgoings')
+      $table->foreign('user_id')
+            ->references('id')->on('users')
             ->onDelete('cascade');
     });
   }
-  
+
   /**
   * Reverse the migrations.
   *

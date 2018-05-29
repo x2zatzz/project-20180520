@@ -31,7 +31,7 @@ class User extends Authenticatable
     'password', 'remember_token',
   ];
 
-  public function itemincomings()
+  public function items()
   {
     return $this->hasMany('App\Itemincoming');
   }

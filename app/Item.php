@@ -3,23 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Items extends Model
+class Item extends Model
 {
-  use SoftDeletes;
-
-  protected $dates = ['deleted_at'];
-
   public function itemincomings()
   {
-    return $this->belongsTo('App\Itemincoming');
+    return $this->hasMany('App\Itemincoming');
   }
-
   public function itemoutgoings()
   {
-    return $this->belongsTo('App\Itemoutgoing');
+    return $this->hasMany('App\Itemoutgoing');
   }
-
-
+  public function users()
+  {
+    return $this->hasMany('App\User');
+  }
 }

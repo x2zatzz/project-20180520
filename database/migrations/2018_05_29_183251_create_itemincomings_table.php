@@ -15,32 +15,26 @@ class CreateItemincomingsTable extends Migration
   {
     Schema::create('itemincomings', function (Blueprint $table) {
       $table->increments('id');
-      
-      $table->date('receivedate');
-      $table->string('name');
-      $table->string('brand');
-      $table->string('model');
-      $table->longText('description')->nullable();
-      
-      $table->enum('unit', ['qty', 'set', 'pack'])->default('qty');
-      $table->unsignedSmallInteger('quantity');
-      $table->decimal('retailprice', 8, 2);
-      
-      $table->string('localcode')->nullable();
-      $table->string('barcode')->nullable();
-      $table->string('purchaseinvoice')->nullable();
-      $table->decimal('purchaseprice', 8, 2)->nullable();
+      $table->unsignedInteger('item_id');
       $table->unsignedInteger('user_id');
+
+      $table->date('receivedate');
+      $table->unsignedSmallInteger('quantity');
+      $table->decimal('purchaseprice', 8, 2)->nullable();
+      $table->string('purchaseinvoice')->nullable();
 
       $table->timestamps();
       $table->softDeletes();
 
+      $table->foreign('item_id')
+            ->references('id')->on('items')
+            ->onDelete('cascade');
       $table->foreign('user_id')
             ->references('id')->on('users')
             ->onDelete('cascade');
     });
   }
-  
+
   /**
   * Reverse the migrations.
   *

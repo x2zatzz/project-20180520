@@ -11,14 +11,11 @@ class Itemincoming extends Model
 
   public function items()
   {
-    return $this->hasMany('App\Item');
+    return $this->belongsTo('App\Item');
   }
   public function users()
   {
     return $this->belongsTo('App\User');
   }
-  public function itemoutgoing()
-  {
-    return $this->hasMany('App\Itemoutgoing');
-  }
+
 }

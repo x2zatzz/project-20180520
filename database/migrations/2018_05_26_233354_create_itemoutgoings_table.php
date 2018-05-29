@@ -15,24 +15,19 @@ class CreateItemoutgoingsTable extends Migration
   {
     Schema::create('itemoutgoings', function (Blueprint $table) {
       $table->increments('id');
-      
-      $table->unsignedInteger('itemincoming_id');
-      $table->date('checkoutdate');
+      $table->unsignedInteger('item_id');
+      $table->unsignedInteger('user_id');
 
-      $table->enum('unit', ['qty', 'set', 'pack'])->default('qty');
+      $table->date('checkoutdate');
       $table->unsignedSmallInteger('quantity');
       $table->decimal('soldprice', 8, 2);
-
-      $table->string('localcode')->nullable();
-      $table->string('barcode')->nullable();
       $table->string('salesinvoice')->nullable();
-      $table->unsignedInteger('user_id');
 
       $table->timestamps();
       $table->softDeletes();
 
-      $table->foreign('itemincoming_id')
-            ->references('id')->on('itemincomings')
+      $table->foreign('item_id')
+            ->references('id')->on('items')
             ->onDelete('cascade');
       $table->foreign('user_id')
             ->references('id')->on('users')

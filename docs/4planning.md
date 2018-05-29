@@ -118,7 +118,7 @@ Here's the list of the tables for the migration:
   lastname
   role
 
-2. ItemIncomings
+2. items
   id*
   recievedate
   name
