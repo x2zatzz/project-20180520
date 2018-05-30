@@ -19,11 +19,15 @@
         @if($role == 'staff')
         <li class="nav-item"><a class="nav-link" href="authcheck">Log-off</a></li>
         <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
-        <li class="nav-item"><a class="nav-link" href="inventory">Check-Out Item</a></li>
+          @if($webheader !== 'inventory')
+          <li class="nav-item"><a class="nav-link" href="inventory">Check-Out Item</a></li>
+          @endif
         @elseif($role == 'manager')
         <li class="nav-item"><a class="nav-link" href="authcheck">Log-off</a></li>
         <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
-        <li class="nav-item"><a class="nav-link" href="inventory">Check-In Item</a></li>
+            @if($webheader !== 'inventory')
+            <li class="nav-item"><a class="nav-link" href="inventory">Check-In Item</a></li>
+            @endif
         <li class="nav-item"><a class="nav-link" href="accounts">Account Management</a></li>
         @else
           <li class="nav-item"><a class="nav-link" href="auth">Sign-In</a></li>

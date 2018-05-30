@@ -17,6 +17,8 @@ Route::get('auth', 'AuthController@form');
 
 Route::post('authcheck', 'AuthController@check');
 Route::get('authcheck', 'AuthController@check');
+
+Route::get('inventory', 'InventoryController@view');
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
