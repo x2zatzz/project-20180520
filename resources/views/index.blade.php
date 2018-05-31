@@ -8,19 +8,17 @@
       @if($role === 'staff')
       <div class="row">
         <h2>Welcome {{$username}}</h2>
-        <h2>Today's Outgoing Transactions:</h2>
         <button>CREATE TRANSACTION</button>
       </div>
       @elseif($role === 'manager')
       <div class="row">
         <h2>Welcome {{$username}}</h2>
-        <h2>Today's Transactions</h2>
         <button>CREATE TRANSACTION</button>
       </div>
       @endif
       <div class="row">
         <div class="col" id="index-in">
-          <h2>Inbound transactions</h2>
+          <h2>Today's inbound transactions</h2>
           <table class="table">
             <thead>
               <tr>
@@ -45,7 +43,7 @@
         </div>
 
         <div class="col" id="index-out">
-          <h2>Outbound transactions</h2>
+          <h2>Today's outbound transactions</h2>
           <table class="table">
             <thead>
               <tr>
@@ -70,7 +68,7 @@
 
       </div>
       <div class="row" id="index-sum">
-        <h2>Current inventory</h2>
+        <h2 class="">Current inventory</h2>
         <table class="table">
           <thead>
             <tr>
@@ -86,12 +84,35 @@
             @foreach($data[2]->toArray() as $item)
               <tr>
                 <td>{{$item['name']}}</td>
-                <td>{{$item['name']}}</td>
+
+
+                @if(isset($data[6][$item['id']]['quantity']))
+                  <td>
+                    @php
+                      if(isset($data[6][$item['id']]['quantity'])){
+                        $a = $data[6][$item['id']]['quantity'];
+                      } else{
+                        $a = 0;
+                      }
+                      if(isset($data[7][$item['id']]['quantity'])){
+                        $b = $data[7][$item['id']]['quantity'];
+                      } else{
+                        $b = 0;
+                      }
+                      echo ($a-$b);
+                    @endphp
+
+                  </td>
+                @else
+                  <td>0</td>
+                @endif
+
                 @if(isset($data[6][$item['id']]['quantity']))
                   <td>{{$data[6][$item['id']]['quantity']}}</td>
                 @else
                   <td>0</td>
                 @endif
+
                 @if(isset($data[7][$item['id']]['quantity']))
                   <td>{{$data[7][$item['id']]['quantity']}}</td>
                 @else
@@ -102,16 +123,6 @@
 
             @endforeach
 
-            {{-- {{dd($data[5])}} --}}
-            {{-- @foreach($data[5] as $value)
-              <tr>
-                <td>{{$data[2]->where('id',array_keys($value)[0])->first()->name}}</td>
-                <td>{{array_keys($value)[0]}}</td>
-                <td>{{array_keys($value)[0]}}</td>
-                <td>{{array_keys($value)[0]}}</td>
-              </tr>
-
-            @endforeach --}}
           </tbody>
 
         </table>

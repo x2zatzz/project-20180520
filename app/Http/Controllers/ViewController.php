@@ -54,7 +54,7 @@ class ViewController extends Controller
       // array_push($data[6],[$key => $sum]);
     }
     $data[7] = collect($data[7])->keyBy('item_id');
-
+    // dd($data[7]);
 
     // $data[1] = Itemoutgoing::all();
     // $data[0] = Itemincoming::all();
