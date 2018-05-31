@@ -11,6 +11,6 @@ class ItemincomingsTableSeeder extends Seeder
   */
   public function run()
   {
-    factory(App\Itemincoming::class, 10)->create();
+    factory(App\Itemincoming::class, 20)->create();
   }
 }

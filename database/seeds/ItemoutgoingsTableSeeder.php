@@ -11,6 +11,14 @@ class ItemoutgoingsTableSeeder extends Seeder
   */
   public function run()
   {
-    factory(App\Itemoutgoing::class, 10)->create();
+    factory(App\Itemoutgoing::class, 1)->create();
+    factory(App\Itemoutgoing::class, 1)->create();
+    factory(App\Itemoutgoing::class, 1)->create();
+    factory(App\Itemoutgoing::class, 1)->create();
+    factory(App\Itemoutgoing::class, 1)->create();
+    factory(App\Itemoutgoing::class, 1)->create();
+    factory(App\Itemoutgoing::class, 1)->create();
+    factory(App\Itemoutgoing::class, 1)->create();
+    factory(App\Itemoutgoing::class, 1)->create();
   }
 }
