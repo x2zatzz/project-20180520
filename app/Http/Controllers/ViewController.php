@@ -21,7 +21,8 @@ class ViewController extends Controller
     $data[5] = Itemoutgoing::all()->groupBy('item_id')->toArray();
     $data[6] = [];
     $data[7] = [];
-    $data[8] = collect($data[0])->merge(collect($data[1]));
+    $data[8] = collect($data[0])->merge(collect($data[1]))->sortBy('updated_at')->reverse()->unique('item_id')->keyBy('item_id');
+    $data[9] = $data[2]->where('')->sortBy('name')->toArray();
 
     // array_map(function($items){
 
@@ -82,22 +83,7 @@ class ViewController extends Controller
       $webheader ='index';
       $snackbar = session('snackbar');
       $message = session('message');
-      // if(!isset($snackbar)){
-      //   $snackbar = 'snackbar-greet';
-      //   $message = 'Welcome Guest!';
-      // } else{
-      //   $snackbar = session('snackbar');
-      //   $message = session('message');
-      // }
     }
-
-    // if(Auth::check()){
-    //   $username = User::find(Auth::id()->username);
-    //   $role = User::find(Auth::id()->role);
-    // } else{
-    //   $username = null;
-    //   $role = 'guest';
-    // }
 
     return view('index', [
         'snackbar' => $snackbar,

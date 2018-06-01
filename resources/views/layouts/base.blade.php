@@ -36,6 +36,7 @@
     @yield('body')
 
     @include('layouts.partials.footer')
+    @include('layouts.partials.modal')
   </body>
 </html>
 @php dd(get_defined_vars()) @endphp

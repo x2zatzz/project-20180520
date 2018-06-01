@@ -8,33 +8,11 @@ use DB;
 
 class InventoryController extends Controller
 {
-  public function view(){
-    if(Auth::check()){
-      $role = Auth::user()->role;
-    } else{
-      $role = 'guest';
-    }
+  public function checkout(Request $request){
+    dd($request);
 
 
-    switch($role){
-      case 'manager':
-        $webheader = 'inventory';
-        return view('inventory',
-          [
-            'webheader' => $webheader,
-            'role' => $role,
-            'data' => $data,
-          ]
-        );
-        break;
-
-      case 'staff':
-        break;
-
-      default:
-        break;
-    }
-
+    
+    return redirect('/');
   }
-
 }

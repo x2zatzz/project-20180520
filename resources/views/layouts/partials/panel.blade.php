@@ -17,25 +17,27 @@
 
       @if(Auth::check())
         @if($role == 'staff')
-        <li class="nav-item"><a class="nav-link" href="authcheck">Log-off</a></li>
-        <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
-          @if($webheader !== 'inventory')
-          <li class="nav-item"><a class="nav-link" href="inventory">Check-Out Item</a></li>
-          @endif
+        <button class="nav-item btn"><a class="nav-link" href="authcheck">Log-off</a></button>
+        <button class="nav-item btn"><a class="nav-link" href="profile">Profile</a></button>
+        <button class="nav-item btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-checkout"><a class="nav-link">Check-Out Item</a></button>
         @elseif($role == 'manager')
-        <li class="nav-item"><a class="nav-link" href="authcheck">Log-off</a></li>
-        <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
-            @if($webheader !== 'inventory')
-            <li class="nav-item"><a class="nav-link" href="inventory">Check-In Item</a></li>
-            @endif
-        <li class="nav-item"><a class="nav-link" href="accounts">Account Management</a></li>
+        <button class="nav-item btn"><a class="nav-link" href="authcheck">Log-off</a></button>
+        <button class="nav-item btn"><a class="nav-link" href="profile">Profile</a></button>
+        <button class="nav-item btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-checkout"><a class="nav-link">Check-Out Item</a></button>
+        <button class="nav-item btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-checkin"><a class="nav-link">Check-In Item</a></button>
+        <button class="nav-item btn"><a class="nav-link" href="accounts">Account Management</a></button>
         @else
-          <li class="nav-item"><a class="nav-link" href="auth">Sign-In</a></li>
+          <button class="nav-item btn"><a class="nav-link" href="auth">Sign-In</a></button>
         @endif
       @else
-        <li class="nav-item"><a class="nav-link" href="auth">Sign-In</a></li>
+        <button class="nav-item btn"><a class="nav-link" href="auth">Sign-In</a></button>
       @endif
     </ul>
+
+    {{-- <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Enter product name" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> --}}
   </nav>
 
 </header>

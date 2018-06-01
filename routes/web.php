@@ -12,13 +12,12 @@
 */
 
 Route::get('/', 'ViewController@indexPage');
-
 Route::get('auth', 'AuthController@form');
 
 Route::post('authcheck', 'AuthController@check');
 Route::get('authcheck', 'AuthController@check');
 
-Route::get('inventory', 'InventoryController@view');
+Route::post('checkout', 'InventoryController@checkout');
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
