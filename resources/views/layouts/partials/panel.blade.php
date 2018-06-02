@@ -27,10 +27,14 @@
         <button class="nav-item btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-checkin"><a class="nav-link">Check-In Item</a></button>
         <button class="nav-item btn"><a class="nav-link" href="accounts">Account Management</a></button>
         @else
+          @if(Route::current()->uri !== 'auth')
           <button class="nav-item btn"><a class="nav-link" href="auth">Sign-In</a></button>
+          @endif
         @endif
       @else
+        @if(Route::current()->uri !== 'auth')
         <button class="nav-item btn"><a class="nav-link" href="auth">Sign-In</a></button>
+        @endif
       @endif
     </ul>
 

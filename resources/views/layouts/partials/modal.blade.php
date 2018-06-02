@@ -17,8 +17,8 @@
           <div class="form-group">
             <label for="item_name">Item Name</label>
             <select class="form-control" id="item_name" name="item_name">
-              @foreach($data[9] as $items)
-                <option>{{$items['brand'].'-'.$items['name']}}  </option>
+              @foreach($data[1]->toArray() as $items)
+                <option>{{$items['namebrand']}}  </option>
               @endforeach
             </select>
           </div>

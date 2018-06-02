@@ -20,5 +20,7 @@ Route::get('authcheck', 'AuthController@check');
 Route::post('checkout', 'InventoryController@checkout');
 // Auth::routes();
 
+
+Route::post('fetchapi', 'FetchController@main');
 // Route::get('/home', 'HomeController@index')->name('home');
 
