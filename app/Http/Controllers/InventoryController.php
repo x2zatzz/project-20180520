@@ -12,7 +12,7 @@ class InventoryController extends Controller
     dd($request);
 
 
-    
+
     return redirect('/');
   }
 }

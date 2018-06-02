@@ -39,31 +39,6 @@ class CreateItemsTable extends Migration
             ->references('id')->on('users')
             ->onDelete('cascade');
     });
-
-
-    $name = $faker->unique()->word;
-    $brand = $faker->word;
-    $value = rand(0,9)*10000+rand(0,9)*1000+rand(0,9)*100+rand(0,9)*10+rand(0,9)*1+rand(0,9)*0.1+rand(0,9)*0.01;
-
-    DB::table('items')->insert(
-      [
-        [
-          'name' => $name,
-          'brand' => $brand,
-          'namebrand' => $brand.'-'.$name,
-          'model' => $faker->word,
-          'description' => $faker->sentence,
-
-          'retailprice' => $value,
-
-          'localcode' => $faker->ean8,
-          'barcode' => $faker->ean13,
-          'image' => $faker->imageUrl($width=200, $height=200, 'cats'),
-          'user_id' => 3,
-        ]
-      ]
-    );
-
   }
 
   /**

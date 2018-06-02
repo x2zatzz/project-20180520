@@ -15,9 +15,6 @@ $factory->define(App\Transaction::class, function (Faker $faker) {
     $type = ['check-in', 'check-out'][array_rand([0,1])];
     $quantity = rand(1, $calc-$calc1);
   }
-  // $id = App\Transaction::select('item_id')->where('type','check-in')->where('quantity','>',1)->get()->random()['item_id'];
-  // $quantity = rand(1, (App\Transaction::where('item_id', $id)->where('type','check-in')->where('quantity', '!=', 0)->sum('quantity'))-(App\Transaction::where('item_id', $id)->where('type', 'check-out')->sum('quantity')));
-  // $quantity = rand(, ;
 
   return
   [

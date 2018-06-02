@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransactionTable extends Migration
+class CreateTransactionsTable extends Migration
 {
   /**
   * Run the migrations.
@@ -33,29 +33,6 @@ class CreateTransactionTable extends Migration
             ->references('id')->on('items')
             ->onDelete('cascade');
     });
-
-    // DB::table('transactions')->insert(
-    //   [
-    //     [
-    //       'user_id' => 2,
-    //       'item_id' => 1,
-    //       'type' => 'check-in',
-    //       'date' => today(),
-    //       'quantity' => rand(1, 10),
-    //       'value' => rand(0,9)*10000+rand(0,9)*1000+rand(0,9)*100+rand(0,9)*10+rand(0,9)*1+rand(0,9)*0.1+rand(0,9)*0.01,
-    //       'invoice' => uniqid(),
-    //     ],
-    //     [
-    //       'user_id' => 3,
-    //       'item_id' => 1,
-    //       'type' => 'check-in',
-    //       'date' => today(),
-    //       'quantity' => rand(1, 10),
-    //       'value' => rand(0,9)*10000+rand(0,9)*1000+rand(0,9)*100+rand(0,9)*10+rand(0,9)*1+rand(0,9)*0.1+rand(0,9)*0.01,
-    //       'invoice' => uniqid(),
-    //     ],
-    //   ]
-    // );
   }
 
   /**

@@ -2,144 +2,130 @@
 
 @section('body')
 
-  <main class="container">
+<main class="container">
 
-    @isset($role)
-      @if($role === 'staff')
-      <div class="row">
-        <h2>Welcome {{$username}}</h2>
-      </div>
-      @elseif($role === 'manager')
-      <div class="row">
-        <h2>Welcome {{$username}}</h2>
-      </div>
-      @endif
-            <div class="row" id="index-sum">
-        <h2 class="">Current inventory</h2>
+  @isset($role)
+    @if($role === 'staff')
+    <div class="row">
+      <h2>Welcome {{$username}}</h2>
+    </div>
+    @elseif($role === 'manager')
+    <div class="row">
+      <h2>Welcome {{$username}}</h2>
+    </div>
+    @elseif($role === 'guest')
+    <div class="row">
+      <h2>Welcome guest!</h2>
+    </div>
+    @else
+    <div class="row">
+      <h2><i>Account database is empty</i></h2>
+    </div>
+    @endif
+
+    <div class="row" id="index-sum">
+      <h2 class="">Current inventory</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Product name</th>
+            <th scope="col">Model name</th>
+            <th scope="col">Brand name</th>
+            <th scope="col">Current inventory</th>
+            <th scope="col">In</th>
+            <th scope="col">Out</th>
+            <th scope="col">Last transaction</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if(empty(count($data[1])))
+            <tr><td><i>Inventory database is empty</i></td></tr>
+          @else
+            @foreach($data[1]->toArray() as $item)
+            <tr>
+              <td>{{$item['name']}}</td>
+              <td>{{$item['model']}}</td>
+              <td>{{$item['brand']}}</td>
+              <td>{{($data[2]->where('item_id',$item['id'])->where('type', 'check-in')->sum('quantity'))-($data[2]->where('item_id',$item['id'])->where('type', 'check-out')->sum('quantity'))}}</td>
+              <td>{{$data[2]->where('item_id',$item['id'])->where('type', 'check-in')->sum('quantity')}}</td>
+              <td>{{$data[2]->where('item_id',$item['id'])->where('type', 'check-out')->sum('quantity')}}</td>
+              <td>@if(isset($data[2]->firstWhere('item_id',$item['id'])->updated_at)){{$data[2]->firstWhere('item_id',$item['id'])->updated_at}}@else <i>no transaction record</i> @endif</td>
+            </tr>
+            @endforeach
+          @endif
+
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row">
+      <div class="col" id="index-in">
+        <h2 class="">Today's inbound transactions</h2>
         <table class="table">
           <thead>
             <tr>
+              <th scope="col">Date</th>
               <th scope="col">Product name</th>
               <th scope="col">Brand name</th>
-              <th scope="col">Current inventory</th>
-              <th scope="col">In</th>
-              <th scope="col">Out</th>
-              <th scope="col">Last transaction</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Account</th>
             </tr>
           </thead>
           <tbody>
-            {{-- {{dd($data[2]->get()->name)}} --}}
-            {{-- {{-- @foreach($data[2]->get()->toArray() as $items) --}}
-            @foreach($data[2]->toArray() as $item)
+            @if(empty(count($data[3])))
+              <tr><td><i>No transactions today</i></td></tr>
+            @else
+              @foreach($data[3]->toArray() as $item)
               <tr>
-                <td>{{$item['name']}}</td>
-                <td>{{$item['brand']}}</td>
-                @if(isset($data[6][$item['id']]['quantity']))
-                  <td>
-                    @php
-                      if(isset($data[6][$item['id']]['quantity'])){
-                        $a = $data[6][$item['id']]['quantity'];
-                      } else{
-                        $a = 0;
-                      }
-                      if(isset($data[7][$item['id']]['quantity'])){
-                        $b = $data[7][$item['id']]['quantity'];
-                      } else{
-                        $b = 0;
-                      }
-                      echo ($a-$b);
-                    @endphp
-
-                  </td>
-                @else
-                  <td>0</td>
-                @endif
-
-                @if(isset($data[6][$item['id']]['quantity']))
-                  <td>{{$data[6][$item['id']]['quantity']}}</td>
-                @else
-                  <td>0</td>
-                @endif
-
-                @if(isset($data[7][$item['id']]['quantity']))
-                  <td>{{$data[7][$item['id']]['quantity']}}</td>
-                @else
-                  <td>0</td>
-                @endif
-
-                @if(isset($data[8][$item['id']]['updated_at']))
-                  <td>{{$data[8][$item['id']]['updated_at']}}</td>
-                @else
-                  <td>0</td>
-                @endif
-
+                <td>{{$item['updated_at']}}</td>
+                <td>{{$data[1]->where('id',$item['item_id'])->first()->name}}</td>
+                <td>{{$data[1]->where('id',$item['item_id'])->first()->brand}}</td>
+                <td>{{$item['quantity']}}</td>
+                <td>{{$data[0]->where('id',$item['user_id'])->first()->username}}</td>
               </tr>
-
-            @endforeach
-
+              @endforeach
+            @endif
           </tbody>
-
         </table>
       </div>
 
-      <div class="row">
-        <div class="col" id="index-in">
-          <h2>Today's inbound transactions</h2>
-          <table class="table">
-            <thead>
+      <div class="col" id="index-out">
+        <h2 class="">Today's outbound transactions</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Product name</th>
+              <th scope="col">Brand name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Account</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if(empty(count($data[3])))
+              <tr><td><i>No transactions today</i></td></h2>
+            @else
+              @foreach($data[4]->toArray() as $item)
               <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Product name</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Account</th>
+                <td>{{$item['updated_at']}}</td>
+                <td>{{$data[1]->where('id',$item['item_id'])->first()->name}}</td>
+                <td>{{$data[1]->where('id',$item['item_id'])->first()->brand}}</td>
+                <td>{{$item['quantity']}}</td>
+                <td>{{$data[0]->where('id',$item['user_id'])->first()->username}}</td>
               </tr>
-            </thead>
-            <tbody>
-              {{-- {{dd($data[0])}} --}}
-              @foreach($data[0] as $items)
-                <tr>
-                  <td>{{$items['updated_at']}}</td>
-                  <td>{{$data[2]->where('id',$items['item_id'])->first()->namebrand}}</td>
-                  <td>{{$items['quantity']}}</td>
-                  <td>{{$data[3]->find($items['user_id'])->username}}</td>
-                </tr>
               @endforeach
-            </tbody>
-          </table>
-        </div>
-
-        <div class="col" id="index-out">
-          <h2>Today's outbound transactions</h2>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Product name</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Account</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($data[1] as $items)
-                <tr>
-                  <td>{{$items['updated_at']}}</td>
-                  <td>{{$data[2]->where('id',$items['item_id'])->first()->namebrand}}</td>
-                  <td>{{$items['quantity']}}</td>
-                  <td>{{$data[3]->find($items['user_id'])->username}}</td>
-                </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
-
+            @endif
+          </tbody>
+        </table>
       </div>
+    </div>
 
-    @endisset
+  @endisset
 
-    @empty($role)
-      <h2>Welcome guest</h2>
-      <h2>Today's Statistics</h2>
-    @endempty
+  @empty($role)
+    <h2>Welcome guest</h2>
+    <h2>Today's Statistics</h2>
+  @endempty
 
-  </main>
+</main>
 @endsection
