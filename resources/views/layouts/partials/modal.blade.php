@@ -20,7 +20,9 @@
               <select class="form-control" id="item_name" name="item_name">
                   <option></option>
                 @foreach($data[1]->toArray() as $items)
+                  @if(collect($data[5])->search($items['id']) !== false)
                   <option>{{$items['namebrand']}}  </option>
+                  @endif
                 @endforeach
               </select>
             </div>

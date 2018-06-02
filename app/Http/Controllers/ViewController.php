@@ -17,6 +17,13 @@ class ViewController extends Controller
     $data[2] = Transaction::all()->sortByDesc('updated_at');
     $data[3] = Transaction::all()->where('type','check-in')->where('updated_at','>=',today())->sortByDesc('updated_at');
     $data[4] = Transaction::all()->where('type','check-out')->where('updated_at','>=',today())->sortByDesc('updated_at');
+    $data[5] = array(); //list of non-empty items
+
+    foreach($data[1]->toArray() as $items){
+      if($data[2]->where('item_id', $items['id'])->where('type','check-in')->sum('quantity')-$data[2]->where('item_id', $items['id'])->where('type','check-out')->sum('quantity') > 0){
+        array_push($data[5],$items['id']);
+      }
+    }
 
     if(Auth::check()){
       $username = Auth::user()->username;

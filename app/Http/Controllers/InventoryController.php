@@ -24,19 +24,19 @@ class InventoryController extends Controller
 
     $transaction->save();
 
-    DB::table('transactions')->insert(
-      [
-        [
-          'user_id' => Auth::user()->id,
-          'item_id' => Item::all()->firstWhere('namebrand',$request->item_name)->id,
-          'type' => 'check-out',
-          'date' => $request->checkoutdate.' '.$request->checkouttime,
-          'quantity' => $request->quantity,
-          'value' => $request->soldprice,
-          'invoice' => $request->salesinvoice,
-        ]
-      ]
-    );
+    // DB::table('transactions')->insert(
+    //   [
+    //     [
+    //       'user_id' => Auth::user()->id,
+    //       'item_id' => Item::all()->firstWhere('namebrand',$request->item_name)->id,
+    //       'type' => 'check-out',
+    //       'date' => $request->checkoutdate.' '.$request->checkouttime,
+    //       'quantity' => $request->quantity,
+    //       'value' => $request->soldprice,
+    //       'invoice' => $request->salesinvoice,
+    //     ]
+    //   ]
+    // );
 
     return redirect('/');
   }
