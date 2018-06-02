@@ -20,61 +20,54 @@ function snackbar(){
 }
 
 function events(){
-  var event = document.querySelector('.modal-body').querySelector('#item_name'),
-      token = document.querySelector('.modal-body').querySelector('input[name="_token"]').value;
+  var event = document.querySelector('#item_name');
 
+  if(event !== null){
 
-  event.addEventListener('change', function(){
-    array = {
-      formkey: [
-        '_token',
-        'namebrand',
-      ],
-      formvalue: [
-        token,
-        this.value,
-      ],
-      url: "fetchapi",
-      method: "POST",
-      credentials: "same-origin",
-      mode: "no-cors",
-    }
+    event.addEventListener('change', function(){
+      document.querySelector('#quantity').value = 1;
 
-    var formData = new FormData();
+      array = {
+        formkey: [
+          '_token',
+          'namebrand',
+        ],
+        formvalue: [
+          document.querySelector('input[name="_token"]').value,
+          this.value,
+        ],
+        url: "fetchapi",
+        method: "POST",
+        credentials: "same-origin",
+        mode: "no-cors",
+      }
 
-    for (l = 0; l < array['formkey'].length; l++) {
-      formData.append(array['formkey'][l], array['formvalue'][l]);
-    }
+      var formData = new FormData();
+  
+      for (l = 0; l < array['formkey'].length; l++) {
+        formData.append(array['formkey'][l], array['formvalue'][l]);
+      }
 
-    fetch(array['url'], {
-      method: array['method'],
-      body: formData,
-      credentials: array['credentials']
-    })
-      .then(response => response.text())
-      .then(function (response) {
-        var data = JSON.parse(response);
-        console.log(data);
-        /*
-          data should be in form of associative array:
-          array->sub0->datalist
-          array->sub1->datalist
-        */
-
-
-        // for (l = 0; l < data.length; l++) {
-        //   for (k = 0; k < data['sub' + l]; k++) {
-        //     //actions to datalists
-        //   }
-        // }
-
-
-        // ASYNC actions
-        //
-
+      fetch(array['url'], {
+        method: array['method'],
+        body: formData,
+        credentials: array['credentials']
       })
-      .catch(
-        console.log('asynchronous fetch-API function failed!')
-      );
-  })
+        .then(response => response.text())
+        .then(function (response) {
+          var data = JSON.parse(response);
+
+          document.querySelector('#item_id').value = data[0]['item_id'];
+          document.querySelector('#quantity').max = data[0]['quantity'];
+          document.querySelector('#soldprice').value = data[0]['value'];
+          document.querySelector('#barcode').value = data[0]['barcode'];
+          document.querySelector('#item-image').src = data[0]['image'];
+
+        })
+        .catch(error => console.log('FAILURE: asynchronous fetch-API function failed!'))
+        .then(
+        console.log('SUCCESS: asynchronous fetch-API function successful!')
+        );
+    });
+  }
 }
