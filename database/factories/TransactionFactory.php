@@ -8,10 +8,11 @@ $factory->define(App\Transaction::class, function (Faker $faker) {
   $value = App\Item::find($id)->retailprice;
   $calc = App\Transaction::where('item_id',$id)->where('type','check-in')->sum('quantity');
   $calc1 = App\Transaction::where('item_id',$id)->where('type','check-out')->sum('quantity');
-  if($calc === 0){
+  if($calc-$calc1 === 0){
     $type = 'check-in';
     $quantity = rand(1, 20);
-  } else{
+  }
+  else{
     $type = ['check-in', 'check-out'][array_rand([0,1])];
     $quantity = rand(1, $calc-$calc1);
   }
