@@ -21,7 +21,7 @@ class CreateItemsTable extends Migration
 
       $table->string('name');
       $table->string('brand');
-      $table->string('namebrand');
+      $table->string('namebrand')->unique();
       $table->string('model');
       $table->longText('description')->nullable();
 
