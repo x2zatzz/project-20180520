@@ -23,7 +23,6 @@ $factory->define(App\Item::class, function (Faker $faker) {
 
     'localcode' => $faker->ean8,
     'barcode' => $faker->ean13,
-    'image' => $faker->imageUrl($width=200, $height=200, 'cats'),
     'user_id' => 3,
   ];
 });

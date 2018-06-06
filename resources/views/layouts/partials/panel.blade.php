@@ -7,13 +7,11 @@
 
   <h1 class="navbar-brand">Inventory Tracking Web Application</h1>
 
-
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <nav class="collapse navbar-collapse" id="navbarNav" >
     <ul class="navbar-nav mr-auto">
-
 
       @if(Auth::check())
         @if($role == 'staff')
@@ -25,6 +23,7 @@
         <button class="nav-item btn"><a class="nav-link" href="profile">Profile</a></button>
         <button class="nav-item btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-checkout"><a class="nav-link">Check-Out Item</a></button>
         <button class="nav-item btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-checkin"><a class="nav-link">Check-In Item</a></button>
+        <button class="nav-item btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-newitem"><a class="nav-link">New Item</a></button>
         <button class="nav-item btn"><a class="nav-link" href="accounts">Account Management</a></button>
         @else
           @if(Route::current()->uri !== 'auth')

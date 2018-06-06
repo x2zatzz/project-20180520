@@ -18,9 +18,14 @@ Route::post('authcheck', 'AuthController@check');
 Route::get('authcheck', 'AuthController@check');
 
 Route::post('checkout', 'InventoryController@checkout');
+Route::post('checkin', 'InventoryController@checkin');
+Route::post('newitem', 'InventoryController@newitem');
 // Auth::routes();
 
 
-Route::post('fetchapi', 'FetchController@main');
+Route::post('fetch_itemdetail', 'FetchController@itemdetail');
+Route::post('fetch_name', 'FetchController@itemname');
+Route::post('fetch_brand', 'FetchController@itembrand');
+Route::post('fetch_itemupdate', 'FetchController@itemupdate');
 // Route::get('/home', 'HomeController@index')->name('home');
 

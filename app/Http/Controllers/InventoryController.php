@@ -7,6 +7,7 @@ use Auth;
 use DB;
 use App\Item;
 use App\Transaction;
+use Storage;
 
 class InventoryController extends Controller
 {
@@ -24,19 +25,43 @@ class InventoryController extends Controller
 
     $transaction->save();
 
-    // DB::table('transactions')->insert(
-    //   [
-    //     [
-    //       'user_id' => Auth::user()->id,
-    //       'item_id' => Item::all()->firstWhere('namebrand',$request->item_name)->id,
-    //       'type' => 'check-out',
-    //       'date' => $request->checkoutdate.' '.$request->checkouttime,
-    //       'quantity' => $request->quantity,
-    //       'value' => $request->soldprice,
-    //       'invoice' => $request->salesinvoice,
-    //     ]
-    //   ]
-    // );
+    return redirect('/');
+  }
+
+  public function checkin(Request $request){
+
+    $transaction = new Transaction;
+
+    $transaction->user_id = Auth::user()->id;
+    $transaction->item_id = Item::all()->firstWhere('namebrand',$request->item_name)->id;
+    $transaction->type = 'check-in';
+    $transaction->date = $request->checkindate.' '.$request->checkintime;
+    $transaction->quantity = $request->quantity;
+    $transaction->value = $request->purchaseprice;
+    $transaction->invoice = $request->purchaseinvoice;
+
+    $transaction->save();
+
+    return redirect('/');
+  }
+
+  public function newitem(Request $request){
+    $item = new Item;
+
+    $filename = ($item->all()->sortBy('id')->last()->id + 1) . '.jpg';
+
+    $item->name = $request->name;
+    $item->brand = $request->brand;
+    $item->namebrand = $request->brand . '-' . $request->name;
+    $item->model = $request->model;
+    $item->description = $request->description;
+    $item->retailprice = $request->retailprice;
+    $item->image = $filename;
+    $item->user_id = Auth::user()->id;
+
+    $item->save();
+
+    $path = Storage::putFileAs('public/image', $request->file('image'), $filename);
 
     return redirect('/');
   }
