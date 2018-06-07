@@ -276,8 +276,8 @@ function events(){
       .then(response => response.text())
       .then(function (response) {
         var data = JSON.parse(response);
-        console.log('storage/image/'+data['image']);
 
+        document.querySelector('#item_id3').value = data['id'];
         document.querySelector('#item_name3').value = data['name'];
         document.querySelector('#brand_name3').value = data['brand'];
         document.querySelector('#model_name3').value = data['model'];

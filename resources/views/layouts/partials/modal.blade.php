@@ -20,7 +20,7 @@
               <label for="item_name">Item Name</label>
               <select class="form-control" id="item_name" name="item_name">
                   <option></option>
-                @foreach($data[1]->toArray() as $items)
+                @foreach($data[1]->sortBy('name')->toArray() as $items)
                   @if(collect($data[5])->search($items['id']) !== false)
                   <option>{{$items['namebrand']}}  </option>
                   @endif
@@ -50,7 +50,7 @@
               <input type="text" class="form-control" id="item_id" name="item_id" disabled value="">
             </div>
             <div class="form-group">
-              <label for="item_id">Barcode</label>
+              <label for="barcode">Barcode</label>
               <input type="text" class="form-control" id="barcode" name="barcode" disabled value="">
             </div>
             <div class="form-group">
@@ -245,7 +245,7 @@
         </div>
 
         <div class="modal-body">
-          <form class="container row" id="form2" method="POST" action="newitem" enctype="multipart/form-data">
+          <form class="container row" id="form3" method="POST" action="updateitem" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
@@ -272,8 +272,12 @@
                   <input type="number" class="form-control" id="retailprice3" name="retailprice" step="0.01" min="1" value="0000.00" required>
                 </div>
               </fieldset>
-              <fieldset class="col">
 
+              <fieldset class="col">
+                <div class="form-group" hidden>
+                  <label for="item_id3">Item ID</label>
+                  <input type="text" class="form-control" id="item_id3" name="item_id" >
+                </div>
                 <div class="form-group" hidden>
                   <label for="localcode3">Local code</label>
                   <input type="text" class="form-control" id="localcode3" name="localcode">
@@ -300,7 +304,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button form="form2" type="submit" class="btn btn-primary">Update item information</button>
+          <button form="form3" type="submit" class="btn btn-primary">Update item information</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>

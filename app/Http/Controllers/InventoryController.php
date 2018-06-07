@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use Storage;
 use App\Item;
 use App\Transaction;
-use Storage;
 
 class InventoryController extends Controller
 {
@@ -25,7 +25,12 @@ class InventoryController extends Controller
 
     $transaction->save();
 
-    return redirect('/');
+    return redirect('')->with(
+      [
+        'snackbar' => 'snackbar-success',
+        'message' => 'Transaction successfully logged',
+      ]
+    );
   }
 
   public function checkin(Request $request){
@@ -42,7 +47,12 @@ class InventoryController extends Controller
 
     $transaction->save();
 
-    return redirect('/');
+    return redirect('')->with(
+      [
+        'snackbar' => 'snackbar-success',
+        'message' => 'Transaction successfully logged',
+      ]
+    );
   }
 
   public function newitem(Request $request){
@@ -63,6 +73,50 @@ class InventoryController extends Controller
 
     $path = Storage::putFileAs('public/image', $request->file('image'), $filename);
 
-    return redirect('/');
+    return redirect('')->with(
+      [
+        'snackbar' => 'snackbar-success',
+        'message' => 'Successfully registered new item',
+      ]
+    );
+  }
+
+  public function updateitem(Request $request){
+
+    $item = Item::all()->find($request->item_id);
+    $filename = ($item->id) . '.jpg';
+
+    if($request->name !== null && $request->name !== $item->name){
+      $item->name = $request->name;
+    }
+    if($request->brand !== null && $request->brand !== $item->brand){
+      $item->brand = $request->brand;
+    }
+    if($request->brand . '-' . $request->name !== null && $request->brand . '-' . $request->name !== $item->namebrand){
+      $item->namebrand = $request->brand . '-' . $request->name;
+    }
+    if($request->model !== null && $request->model !== $item->model){
+      $item->model = $request->model;
+    }
+    if($request->description !== null && $request->description !== $item->description){
+      $item->description = $request->description;
+    }
+    if($request->retailprice !== null && $request->retailprice !== $item->retailprice){
+      $item->retailprice = $request->retailprice;
+    }
+    if($request->image !== null && $request->image !== $item->image){
+      $item->image = $filename;
+      $path = Storage::putFileAs('public/image', $request->file('image'), $filename);
+    }
+    $item->user_id = Auth::user()->id;
+
+    $item->save();
+
+    return redirect('')->with(
+      [
+        'snackbar' => 'snackbar-success',
+        'message' => 'Successfully updated item information',
+      ]
+    );
   }
 }

@@ -15,24 +15,24 @@
 
       @if(Auth::check())
         @if($role == 'staff')
-        <button class="nav-item btn"><a class="nav-link" href="authcheck">Log-off</a></button>
-        <button class="nav-item btn"><a class="nav-link" href="profile">Profile</a></button>
-        <button class="nav-item btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-checkout"><a class="nav-link">Check-Out Item</a></button>
+        <button class="btn btn-default"><a class="nav-link" href="authcheck">Log-off</a></button>
+        <button class="btn btn-default"><a class="nav-link" href="profile">Profile</a></button>
+        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modal-checkout"><a class="nav-link">Check-Out Item</a></button>
         @elseif($role == 'manager')
-        <button class="nav-item btn"><a class="nav-link" href="authcheck">Log-off</a></button>
-        <button class="nav-item btn"><a class="nav-link" href="profile">Profile</a></button>
-        <button class="nav-item btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-checkout"><a class="nav-link">Check-Out Item</a></button>
-        <button class="nav-item btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-checkin"><a class="nav-link">Check-In Item</a></button>
-        <button class="nav-item btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-newitem"><a class="nav-link">New Item</a></button>
-        <button class="nav-item btn"><a class="nav-link" href="accounts">Account Management</a></button>
+        <button class="btn btn-default"><a class="nav-link" href="authcheck">Log-off</a></button>
+        <button class="btn btn-default"><a class="nav-link" href="profile">Profile</a></button>
+        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modal-checkout"><a class="nav-link">Check-Out Item</a></button>
+        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modal-checkin"><a class="nav-link">Check-In Item</a></button>
+        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modal-newitem"><a class="nav-link">New Item</a></button>
+        <button class="btn btn-default"><a class="nav-link" href="accounts">Account Management</a></button>
         @else
           @if(Route::current()->uri !== 'auth')
-          <button class="nav-item btn"><a class="nav-link" href="auth">Sign-In</a></button>
+          <button class="btn btn-default"><a class="nav-link" href="auth">Sign-In</a></button>
           @endif
         @endif
       @else
         @if(Route::current()->uri !== 'auth')
-        <button class="nav-item btn"><a class="nav-link" href="auth">Sign-In</a></button>
+        <button class="btn btn-default"><a class="nav-link" href="auth">Sign-In</a></button>
         @endif
       @endif
     </ul>
@@ -42,5 +42,4 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form> --}}
   </nav>
-
 </header>

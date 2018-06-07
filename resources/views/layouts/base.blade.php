@@ -39,4 +39,3 @@
     @include('layouts.partials.modal')
   </body>
 </html>
-@php dd(get_defined_vars()) @endphp
