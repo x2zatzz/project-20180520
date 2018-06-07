@@ -68,15 +68,28 @@ class ViewController extends Controller
 
   public function accountsPage(){
     if(Auth::check()){
-      $role = User::find(Auth::id())->first()->role;
-
+      $role = Auth::user()->role;
+      $username = Auth::user()->username;
       switch($role){
         case 'staff':
-
           break;
 
         case 'manager':
+          $webheader = 'user-management';
+          $snackbar = 'snackbar-success';
+          $message = 'user profiles loaded';
+          $data = User::all()->toArray();
 
+          return view('accounts',
+            [
+              'snackbar' => $snackbar,
+              'message' => $message,
+              'webheader' => $webheader,
+              'username' => $username,
+              'role' => $role,
+              'data' => $data,
+            ]
+          );
           break;
 
         default:

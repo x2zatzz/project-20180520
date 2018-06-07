@@ -1,7 +1,7 @@
 
 @switch(true)
 
-@case($role === 'staff' || $role === 'manager')
+@case($role === 'staff' || $role === 'manager' && $webheader !== 'user-management')
 
 <div class="modal fade" id="modal-checkout" tabindex="-1" role="dialog" aria-labelledby="label-checkout" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -101,7 +101,7 @@
                 <label for="item_name1">Item Name</label>
                 <select class="form-control" id="item_name1" name="item_name" required>
                     <option></option>
-                  @foreach($data[1]->toArray() as $items)
+                  @foreach($data[1]->sortBy('name')->toArray() as $items)
                     <option>{{$items['namebrand']}}  </option>
                   @endforeach
                 </select>

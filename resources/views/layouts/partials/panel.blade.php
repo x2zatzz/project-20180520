@@ -11,20 +11,23 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <nav class="collapse navbar-collapse" id="navbarNav" >
-    <ul class="navbar-nav mr-auto">
+    <div class="navbar-nav mr-auto">
 
       @if(Auth::check())
         @if($role == 'staff')
         <button class="btn btn-default"><a class="nav-link" href="authcheck">Log-off</a></button>
-        <button class="btn btn-default"><a class="nav-link" href="profile">Profile</a></button>
         <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modal-checkout"><a class="nav-link">Check-Out Item</a></button>
         @elseif($role == 'manager')
         <button class="btn btn-default"><a class="nav-link" href="authcheck">Log-off</a></button>
-        <button class="btn btn-default"><a class="nav-link" href="profile">Profile</a></button>
-        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modal-checkout"><a class="nav-link">Check-Out Item</a></button>
-        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modal-checkin"><a class="nav-link">Check-In Item</a></button>
-        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modal-newitem"><a class="nav-link">New Item</a></button>
+          @if($webheader !== 'user-management')
+          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modal-checkout"><a class="nav-link">Check-Out Item</a></button>
+          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modal-checkin"><a class="nav-link">Check-In Item</a></button>
+          <button class="btn btn-default" type="button" data-toggle="modal" data-target="#modal-newitem"><a class="nav-link">New Item</a></button>
+          @endif
+        @elseif($role == 'admin')
+        <button class="btn btn-default"><a class="nav-link" href="authcheck">Log-off</a></button>
         <button class="btn btn-default"><a class="nav-link" href="accounts">Account Management</a></button>
+
         @else
           @if(Route::current()->uri !== 'auth')
           <button class="btn btn-default"><a class="nav-link" href="auth">Sign-In</a></button>
@@ -35,7 +38,7 @@
         <button class="btn btn-default"><a class="nav-link" href="auth">Sign-In</a></button>
         @endif
       @endif
-    </ul>
+    </div>
 
     {{-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Enter product name" aria-label="Search">

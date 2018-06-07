@@ -1,4 +1,6 @@
 function onload(){
+  // notice();
+
   snackbar();
   events();
 }
@@ -26,6 +28,7 @@ function events(){
   event[4] = document.querySelector('#brand_name2');
   event[5] = document.getElementsByClassName('itemupdate');
   event[6] = document.querySelector('#image3');
+  event[7] = document.querySelector('#notice-button');
 
 
   if(event[0] !== null){
@@ -303,4 +306,34 @@ function events(){
     });
   }
 
+
+  if(event[7] !== null){
+    event[7].addEventListener('click', function(){
+      document.querySelector('body').removeChild(document.querySelector('#notice-cover'));
+      document.getElementsByTagName('main')[0].style.opacity = 1;
+      document.getElementsByTagName('header')[0].style.opacity = 1;
+    });
+  }
 }
+
+
+function notice(){
+  var body = document.getElementsByTagName('body')[0],
+      main = document.getElementsByTagName('main')[0],
+      header = document.getElementsByTagName('header')[0],
+      notice = document.createElement('div');
+
+  notice.id = 'notice-cover';
+  notice.style = "z-index:1;";
+  notice.innerHTML =
+  "<div class=\"container\" id=\"notice-body\" style=\"position: absolute; top:0; left: 0; bottom: 0; right: 0; margin: auto auto; height: 500px; width: 500px;\"><h3>Notice:</h3>" +
+  "<div style=\"text-align:justify\">This website was created for demonstration and showcasing a project. Please avoid entering/inputting/providing private information for any purpose on this website. The author is not liable for damages incurred by this website. Thank you.</div>" +
+  "<button class=\"btn btn-primary\" id=\"notice-button\">Ok</button>"
+  "</div>";
+
+  main.style.opacity = 0.2;
+  header.style.opacity = 0.2;
+  body.insertBefore(notice,null);
+
+}
+

@@ -12,7 +12,7 @@ class ItemsTableSeeder extends Seeder
   */
   public function run()
   {
-    factory(App\Item::class, 10)->create();
+    factory(App\Item::class, 5)->create();
 
 
     for($l=0; $l<count(App\Item::all()); $l++){

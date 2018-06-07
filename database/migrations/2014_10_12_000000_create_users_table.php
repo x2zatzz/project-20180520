@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
       $table->increments('id');
       $table->string('username')->unique();
       $table->string('password');
-      $table->string('role')->default('staff');
+      $table->enum('role', ['admin', 'staff', 'manager'])->default('staff');
       $table->rememberToken();
       $table->softDeletes();
       $table->timestamps();
@@ -26,6 +26,11 @@ class CreateUsersTable extends Migration
 
     DB::table('users')->insert(
       [
+        [
+          'username' => 'admin',
+          'password' => Hash::make('admin'),
+          'role' => 'admin',
+        ],
         [
           'username' => 'staff',
           'password' => Hash::make('1234'),

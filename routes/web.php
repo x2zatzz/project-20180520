@@ -13,9 +13,13 @@
 
 Route::get('/', 'ViewController@indexPage');
 Route::get('auth', 'AuthController@form');
+Route::get('accounts', 'Viewcontroller@accountsPage');
+
 
 Route::post('authcheck', 'AuthController@check');
 Route::get('authcheck', 'AuthController@check');
+
+
 
 Route::post('checkout', 'InventoryController@checkout');
 Route::post('checkin', 'InventoryController@checkin');

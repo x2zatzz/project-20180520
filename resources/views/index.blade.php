@@ -13,6 +13,10 @@
     <div class="row">
       <h2>Welcome {{$username}}</h2>
     </div>
+    @elseif($role === 'admin')
+    <div class="row">
+      <h2>Welcome admin!</h2>
+    </div>
     @elseif($role === 'guest')
     <div class="row">
       <h2>Welcome guest!</h2>
@@ -41,7 +45,7 @@
           @if(empty(count($data[1])))
             <tr><td><i>Inventory database is empty</i></td></tr>
           @else
-            @foreach($data[1]->toArray() as $item)
+            @foreach($data[1]->sortBy('name')->toArray() as $item)
             <tr>
               @if($role === 'manager')
               <td><a class="itemupdate" id="itemid-{{$item['id']}}" href="" data-toggle="modal" data-target="#modal-updateitem">{{$item['name']}}</a></td>

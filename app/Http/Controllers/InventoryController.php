@@ -58,7 +58,6 @@ class InventoryController extends Controller
   public function newitem(Request $request){
     $item = new Item;
 
-    $filename = ($item->all()->sortBy('id')->last()->id + 1) . '.jpg';
 
     $item->name = $request->name;
     $item->brand = $request->brand;
@@ -66,12 +65,16 @@ class InventoryController extends Controller
     $item->model = $request->model;
     $item->description = $request->description;
     $item->retailprice = $request->retailprice;
-    $item->image = $filename;
     $item->user_id = Auth::user()->id;
+
+    if($request->image !== null){
+      $filename = ($item->all()->sortBy('id')->last()->id + 1) . '.jpg';
+      $item->image = $filename;
+      $path = Storage::putFileAs('public/image', $request->file('image'), $filename);
+    }
 
     $item->save();
 
-    $path = Storage::putFileAs('public/image', $request->file('image'), $filename);
 
     return redirect('')->with(
       [
