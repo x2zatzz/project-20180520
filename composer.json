@@ -16,7 +16,6 @@
         "twig/twig": "^2.0"
     },
     "require-dev": {
-        "heroku/heroku-buildpack-php": "*",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
