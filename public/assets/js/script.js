@@ -25,6 +25,7 @@ function events(){
   event[3] = document.querySelector('#item_name2');
   event[4] = document.querySelector('#brand_name2');
   event[5] = document.getElementsByClassName('itemupdate');
+  event[6] = document.querySelector('#image3');
 
 
   if(event[0] !== null){
@@ -296,5 +297,10 @@ function events(){
     });
   }
 
+  if(event[6] !== null){
+    event[6].addEventListener('change', function(){
+      document.getElementById('item-image3').src = window.URL.createObjectURL(this.files[0]);
+    });
+  }
 
 }
