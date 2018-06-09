@@ -25,12 +25,10 @@ Route::post('checkout', 'InventoryController@checkout');
 Route::post('checkin', 'InventoryController@checkin');
 Route::post('newitem', 'InventoryController@newitem');
 Route::post('updateitem', 'InventoryController@updateitem');
-// Auth::routes();
 
 
 Route::post('fetch_itemdetail', 'FetchController@itemdetail');
 Route::post('fetch_name', 'FetchController@itemname');
 Route::post('fetch_brand', 'FetchController@itembrand');
 Route::post('fetch_itemupdate', 'FetchController@itemupdate');
-// Route::get('/home', 'HomeController@index')->name('home');
 
