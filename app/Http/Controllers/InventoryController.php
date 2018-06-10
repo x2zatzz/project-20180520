@@ -110,7 +110,8 @@ class InventoryController extends Controller
     }
     if($request->image !== null && $request->image !== $item->image){
       $item->image = $filename;
-      $path = Storage::putFileAs('public/image', $request->file('image'), $filename);
+      $request->file('image')->move(public_path('storage/image/'), $filename);
+      // $path = Storage::putFileAs('public/image', $request->file('image'), $filename);
     }
     $item->user_id = Auth::user()->id;
 
