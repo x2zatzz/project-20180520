@@ -2,7 +2,7 @@
   <figure class="navbar-brand">
     <a href="/">
       @if(str_contains(url()->current(), ['127.0.0.1', 'localhost']))
-        <img class="img-fluid" style="width:30px; height:30px" src="dev-assets/mjta-v01-500dpi-521px.png" >
+        <img class="img-fluid" style="width:30px; height:30px" src="dev-assets/selection/mjta.png" >
         @else
         <img class="img-fluid" style="width:30px; height:30px" src="https://raw.githubusercontent.com/mjtalbatana/dev-assets/master/selection/mjta.png" >
       @endif
