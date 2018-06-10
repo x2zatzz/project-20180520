@@ -1,7 +1,11 @@
 <header class="navbar navbar-expand-lg navbar-light bg-light">
   <figure class="navbar-brand">
     <a href="/">
-      <img class="img-fluid" style="width:30px; height:30px" src="dev-assets/mjta-v01-500dpi-521px.png" >
+      @if(str_contains(url()->current(), ['127.0.0.1', 'localhost']))
+        <img class="img-fluid" style="width:30px; height:30px" src="dev-assets/mjta-v01-500dpi-521px.png" >
+        @else
+        <img class="img-fluid" style="width:30px; height:30px" src="https://raw.githubusercontent.com/mjtalbatana/dev-assets/mjta-v01-500dpi-521px.png" >
+      @endif
     </a>
   </figure>
 
