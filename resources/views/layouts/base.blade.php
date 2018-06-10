@@ -21,7 +21,7 @@
       <script src="dev-modules/bootstrap/bootstrap-4.1.1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
       <script src="dev-modules/greensock-js/greensock-js-1.20.4/src/minified/TweenMax.min.js" crossorigin="anonymous"></script>
     @else
-      <link rel="icon" href="https://raw.githubusercontent.com/mjtalbatana/profile-logo/master/mjta-v01.ico" type="image/x-icon">
+      <link rel="icon" href="https://raw.githubusercontent.com/mjtalbatana/dev-assets/master/selection/mjta-v01.ico" type="image/x-icon">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
