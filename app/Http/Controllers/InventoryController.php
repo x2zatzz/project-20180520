@@ -65,6 +65,7 @@ class InventoryController extends Controller
     $item->model = $request->model;
     $item->description = $request->description;
     $item->retailprice = $request->retailprice;
+    $item->barcode = $request->barcode;
     $item->user_id = Auth::user()->id;
 
     if($request->image !== null){
@@ -88,7 +89,6 @@ class InventoryController extends Controller
   public function updateitem(Request $request){
 
     $item = Item::all()->find($request->item_id);
-    $filename = ($item->id) . '.jpg';
 
     if($request->name !== null && $request->name !== $item->name){
       $item->name = $request->name;
@@ -108,7 +108,11 @@ class InventoryController extends Controller
     if($request->retailprice !== null && $request->retailprice !== $item->retailprice){
       $item->retailprice = $request->retailprice;
     }
-    if($request->image !== null && $request->image !== $item->image){
+    if($request->barcode !== null && $request->barcode !== $item->barcode){
+      $item->barcode = $request->barcode;
+    }
+    if($request->image !== null){
+      $filename = ($item->id) . '.jpg';
       $item->image = $filename;
       $request->file('image')->move(public_path('storage/image/'), $filename);
       // $path = Storage::putFileAs('public/image', $request->file('image'), $filename);
