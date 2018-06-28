@@ -14,7 +14,7 @@
     <script src="assets/js/interactive.js"></script>
 
     @if(str_contains(url()->current(), ['127.0.0.1', 'localhost']))
-      <link rel="icon" href="dev-assets/selection/mjta-v01.ico" type="image/x-icon">
+      <link rel="icon" href="dev-assets/mjta-v01.ico" type="image/x-icon">
       <link rel="stylesheet" href="dev-modules/bootstrap/bootstrap-4.1.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
       <script src="dev-modules/jquery/jquery-3.3.1/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
       <script src="dev-modules/popper.js/popper.js-1.14.3/dist/umd/popper.min.js" crossorigin="anonymous"></script>

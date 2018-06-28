@@ -19,8 +19,6 @@ Route::get('accounts', 'Viewcontroller@accountsPage');
 Route::post('authcheck', 'AuthController@check');
 Route::get('authcheck', 'AuthController@check');
 
-
-
 Route::post('checkout', 'InventoryController@checkout');
 Route::post('checkin', 'InventoryController@checkin');
 Route::post('newitem', 'InventoryController@newitem');
