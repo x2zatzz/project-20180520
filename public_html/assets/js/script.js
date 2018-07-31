@@ -28,7 +28,7 @@ function events(){
   event[4] = document.querySelector('#brand_name2');
   event[5] = document.getElementsByClassName('itemupdate');
   event[6] = document.querySelector('#image3');
-  event[7] = document.querySelector('#notice-button');
+  event[7] = document.querySelector('#username_add');
 
 
   if(event[0] !== null){
@@ -308,12 +308,56 @@ function events(){
 
 
   if(event[7] !== null){
-    event[7].addEventListener('click', function(){
-      document.querySelector('body').removeChild(document.querySelector('#notice-cover'));
-      document.getElementsByTagName('main')[0].style.opacity = 1;
-      document.getElementsByTagName('header')[0].style.opacity = 1;
+    event[7].addEventListener('change', function(){
+
+      array = {
+        formkey: [
+          '_token',
+          'username',
+        ],
+        formvalue: [
+          document.querySelector('#modal-usermgmt').querySelector('input[name="_token"]').value,
+          this.value,
+        ],
+        url: "fetch_username",
+        method: "POST",
+        credentials: "same-origin",
+        mode: "no-cors",
+      }
+      var formData = new FormData();
+
+      for(l = 0; l < array['formkey'].length; l++) {
+        formData.append(array['formkey'][l], array['formvalue'][l]);
+      }
+
+      fetch(array['url'], {
+        method: array['method'],
+        body: formData,
+        credentials: array['credentials']
+      })
+      .then(response => response.text())
+      .then(function (response) {
+        var data = JSON.parse(response);
+
+        console.log(data);
+        // document.querySelector('#item_id3').value = data['id'];
+
+      })
+      .catch(error => console.log('FAILURE: asynchronous fetch-API function failed!'))
+      .then(
+        console.log('SUCCESS: asynchronous fetch-API function successful!')
+      );
+
     });
   }
+
+  // if(event[7] !== null){
+  //   event[7].addEventListener('click', function(){
+  //     document.querySelector('body').removeChild(document.querySelector('#notice-cover'));
+  //     document.getElementsByTagName('main')[0].style.opacity = 1;
+  //     document.getElementsByTagName('header')[0].style.opacity = 1;
+  //   });
+  // }
 }
 
 

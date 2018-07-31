@@ -316,6 +316,52 @@
 
 @break
 
+@case($role === 'admin' && $webheader === 'user-management')
+
+  <div class="modal fade" id="modal-usermgmt" tabindex="-1" role="dialog" aria-labelledby="label-usermgmt" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="label-usermgmt">Add User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form class="container" id="form4" method="POST" action="adduser">
+            @csrf
+            <fieldset>
+              <div class="form-group">
+                <label for="username_add">Username</label>
+                <input type="text" class="form-control" id="username_add" name="username_add" required minlength="4" maxlength="9">
+              </div>
+              <div class="form-group">
+                <label for="role">Role assignment</label>
+                <select class="form-control" id="role" name="role" required>
+                  <option value="staff" selected>staff</option>
+                  <option value="manager">manager</option>
+
+                </select>
+                {{-- <input type="text" class="form-control" id="role" name="role" required value="staff"> --}}
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required minlength="6" maxlength="9">
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button form="form4" type="submit" class="btn btn-primary">Add user</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 @default
 
 @endswitch

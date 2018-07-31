@@ -71,10 +71,7 @@ class ViewController extends Controller
       $role = Auth::user()->role;
       $username = Auth::user()->username;
       switch($role){
-        case 'staff':
-          break;
-
-        case 'manager':
+        case 'admin':
           $webheader = 'user-management';
           $snackbar = 'snackbar-success';
           $message = 'user profiles loaded';

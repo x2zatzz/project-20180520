@@ -27,6 +27,9 @@
         @endif
       </tr>
       @endforeach
+      <tr>
+        <td colspan="4">&#x2795;<a href="" data-toggle="modal" data-target="#modal-usermgmt" ><b>add user</b></a></td>
+      </tr>
     </tbody>
 
   </table>

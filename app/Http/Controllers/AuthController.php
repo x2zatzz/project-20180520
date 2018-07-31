@@ -146,4 +146,8 @@ class AuthController extends Controller
     //   ]
     // );
   }
+
+  public function adduser(Request $request){
+    echo $request;
+  }
 }

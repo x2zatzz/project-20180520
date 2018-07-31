@@ -14,6 +14,7 @@
 Route::get('/', 'ViewController@indexPage');
 Route::get('auth', 'AuthController@form');
 Route::get('accounts', 'Viewcontroller@accountsPage');
+Route::post('adduser', 'AuthController@check');
 
 
 Route::post('authcheck', 'AuthController@check');
@@ -29,4 +30,6 @@ Route::post('fetch_itemdetail', 'FetchController@itemdetail');
 Route::post('fetch_name', 'FetchController@itemname');
 Route::post('fetch_brand', 'FetchController@itembrand');
 Route::post('fetch_itemupdate', 'FetchController@itemupdate');
+Route::post('fetch_username', 'FetchController@username');
+
 

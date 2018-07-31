@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Item;
 use App\Transaction;
+use App\User;
 
 class FetchController extends Controller
 {
@@ -67,6 +68,16 @@ class FetchController extends Controller
     $itemid = substr($_POST['item_id'], strpos($_POST['item_id'], '-')+1);
 
     $data = Item::all()->find($itemid);
+
+    return json_encode($data);
+  }
+
+  public function username(){
+    $data = '';
+
+    $username = $_POST['username'];
+
+    echo User::select('username')->get();
 
     return json_encode($data);
   }
