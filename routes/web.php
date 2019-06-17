@@ -13,7 +13,7 @@
 
 Route::get('/', 'ViewController@indexPage');
 Route::get('auth', 'AuthController@form');
-Route::get('accounts', 'Viewcontroller@accountsPage');
+Route::get('accounts', 'ViewController@accountsPage');
 Route::post('adduser', 'AuthController@check');
 
 
