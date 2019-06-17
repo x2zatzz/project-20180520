@@ -13,13 +13,13 @@
     <script src="assets/js/animation.js"></script>
     <script src="assets/js/interactive.js"></script>
 
-    @if(str_contains(url()->current(), ['127.0.0.1', 'localhost']))
+    @if(str_contains(url()->current(), ['127.0.0.1', 'localhost', '192.168.']))
       <link rel="icon" href="dev-assets/mjta-v01.ico" type="image/x-icon">
-      <link rel="stylesheet" href="dev-modules/bootstrap/bootstrap-4.1.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
-      <script src="dev-modules/jquery/jquery-3.3.1/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
-      <script src="dev-modules/popper.js/popper.js-1.14.3/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-      <script src="dev-modules/bootstrap/bootstrap-4.1.1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
-      <script src="dev-modules/greensock-js/greensock-js-1.20.4/src/minified/TweenMax.min.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="dev-libraries-localized/bootstrap/bootstrap-4.1.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
+      <script src="dev-libraries-localized/jquery/jquery-3.3.1/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
+      <script src="dev-libraries-localized/popper.js/popper.js-1.14.3/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+      <script src="dev-libraries-localized/bootstrap/bootstrap-4.1.1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+      <script src="dev-libraries-localized/greensock-js/greensock-js-1.20.4/src/minified/TweenMax.min.js" crossorigin="anonymous"></script>
     @else
       <link rel="icon" href="https://raw.githubusercontent.com/mjtalbatana/dev-assets/master/selection/mjta-v01.ico" type="image/x-icon">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
