@@ -1,15 +1,61 @@
-/node_modules
+# Database
+*.sql
+*.sqlite
+
+# Git files
+.gitignore_global
+.gitignore
+.gitattributes
+
+# Homestead & Vagrant files
+/.idea
+/.vagrant
+Homestead.json
+Homestead.yaml
+
+# Laravel files
 /public/hot
 /public/storage
 /storage/*.key
 /vendor
-/.idea
-/.vscode
-/.vagrant
-Homestead.json
-Homestead.yaml
+.env
+.env.example
+/node_modules
+
+# Log files
 npm-debug.log
 yarn-error.log
-*.env
-*.ini
-*.gitignore
+laravel.log
+
+# Rails files
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+/node_modules
+/yarn-error.log
+.byebug_history
+
+# Mac files
+.DS_Store
+.DS_Store?
+
+# SCSS/Sass files
+.sass-cache
+style.css.map
+
+# Windows files
+desktop.ini
+thumbs.db
+*.bat
+
+#links
+dev-libraries-localized
+dev-assets
+dev-library-js
+dev-library-animation
+dev-stylesheet
